@@ -5,6 +5,7 @@ security:
     # https://symfony.com/doc/current/security.html#loading-the-user-the-user-provider
     providers:
         # used to reload user from session & other features (e.g. switch_user)
+
         app_user_provider:
             entity:
                 class: App\Entity\User
@@ -13,6 +14,11 @@ security:
         dev:
             pattern: ^/(_(profiler|wdt)|css|images|js)/
             security: false
+        api:
+            pattern: ^/api/
+            stateless: true
+            provider: app_user_provider
+            jwt: ~
         main:
             lazy: true
             provider: app_user_provider
@@ -36,6 +42,10 @@ security:
     access_control:
         - { path: ^/admin, roles: ROLE_ADMIN }
         # - { path: ^/profile, roles: ROLE_USER }
+        - { path: ^/$, roles: PUBLIC_ACCESS } # Allows accessing the Swagger UI
+        - { path: ^/docs, roles: PUBLIC_ACCESS } # Allows accessing the Swagger UI docs
+        - { path: ^/auth, roles: PUBLIC_ACCESS }
+        #- { path: ^/, roles: IS_AUTHENTICATED_FULLY }
 
 when@test:
     security:
