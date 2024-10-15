@@ -32,6 +32,12 @@
         {% endblock %}
     </head>
     <body>
+        {{ include('menu/menu.html.twig') }}
+
+        {{ include('menu/header.html.twig') }}
+
         {% block body %}{% endblock %}
+
+        {{ include('menu/widget.html.twig') }}
     </body>
 </html>

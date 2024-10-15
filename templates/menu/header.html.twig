@@ -1,0 +1,13 @@
+<div class="feed">
+    <header class="feed__header">
+        <div class="header-container">
+            <nav>
+                <h2>{{ page_title }}</h2>
+                {% if not app.user %}
+                    <a href="{{ path('login') }}" class="btn">Login</a>
+                {% else %}
+                    <a href="{{ path('app_logout') }}" class="btn">Logout</a>
+                {% endif %}
+            </nav>
+        </div>
+    </header>

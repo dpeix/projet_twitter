@@ -113,6 +113,7 @@ body {
     padding-bottom: 10px;
     border-bottom: 8px solid var(--twitter-background);
     padding-right: 10px;
+    margin-bottom: 15px;
 }
 
 .tweetBox form {
@@ -122,7 +123,6 @@ body {
 
 .tweetbox__input {
     display: flex;
-    padding: 20px;
 }
 
 .tweetbox__input input {
@@ -142,7 +142,7 @@ body {
     border-radius: 30px;
     width: 80px;
     height: 40px;
-    margin-top: 20px;
+    margin-top: 5px;
     margin-left: auto;
 }
 
@@ -239,3 +239,59 @@ body {
     font-weight: 800;
 }
 
+.feed__header nav {
+    display: flex;
+    align-items: center;
+}
+
+.btn {
+    background-color: var(--twitter-color);
+    color: white;
+    padding: 10px 20px;
+    border-radius: 20px;
+    text-decoration: none;
+    font-weight: bold;
+    transition: background-color 0.3s;
+    position: static;
+    margin-left: auto;
+}
+
+.btn:hover {
+    opacity: 0.8;
+}
+
+/* Style de base pour la boîte de tweet */
+.tweetBox {
+    padding: 10px; /* Espacement interne */
+    margin-bottom: 15px; /* Espace entre les éléments */
+    background-color: white; /* Arrière-plan blanc */
+}
+
+/* Aligner le contenu de la boîte d'entrée */
+.tweetBox .tweetbox__input {
+    display: flex; /* Contenu aligné horizontalement */
+    align-items: center; /* Alignement vertical centré */
+    gap: 10px; /* Espace entre les éléments enfants (alternative à margin-right) */
+}
+
+/* Image utilisateur dans la boîte de tweet */
+.tweetBox .tweetbox__input img {
+    width: 40px; /* Largeur fixe pour l'image */
+    height: 40px; /* Hauteur fixe pour l'image */
+    border-radius: 50%; /* Image circulaire */
+    object-fit: cover; /* Assure que l'image reste bien cadrée */
+}
+
+/* Champ de texte dans la boîte de tweet */
+.tweetBox .tweetbox__input textarea {
+    flex: 1; /* Le champ de texte prend toute la place disponible */
+    border: none; /* Supprimer les bordures par défaut */
+    outline: none; /* Retirer l'effet de focus par défaut */
+    font-size: 16px; /* Taille de texte agréable à lire */
+    resize: none; /* Empêche le redimensionnement du textarea */
+}
+
+/* Changement de couleur au survol du bouton */
+.tweetBox button.tweetBox__tweetButton:hover {
+    background-color: #008bb9; /* Couleur plus foncée au survol */
+}

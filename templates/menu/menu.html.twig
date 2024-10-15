@@ -1,7 +1,7 @@
 <div class="sidebar">
 	<i class="fab fa-twitter"></i>
-	<div class="sidebarOption active">
-		<span class="material-icons"> home </span>
+	<div class="sidebarOption" onclick="window.location.href='{{ path('home') }}';" style="cursor:pointer;">
+		<span class="material-icons">home</span>
 		<h2>Home</h2>
 	</div>
 
@@ -30,9 +30,9 @@
 		<h2>Lists</h2>
 	</div>
 
-	<div class="sidebarOption">
+	<div class="sidebarOption" onclick="window.location.href='{{ path('profile') }}';" style="cursor:pointer;">
 		<span class="material-icons"> perm_identity </span>
-		<a href="{{ path('profile') }}" >Profile</a>
+		<h2>Profile</h2>
 	</div>
 
 	<div class="sidebarOption">

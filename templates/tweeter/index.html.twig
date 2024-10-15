@@ -2,14 +2,9 @@
 
 {% block title %}Tweeter Home{% endblock %}
 
+{% set page_title = 'Home' %}
+
 {% block body %}
-
-{{ include('menu/menu.html.twig') }}
-
-<div class="feed">
-    <div class="feed__header">
-        <h2>Home</h2>
-    </div>
     <div class="tweetBox">
         {# Utilisation du formulaire Symfony dans Twig #}
         {{ form_start(form) }}
@@ -20,46 +15,13 @@
             <button type="submit" class="tweetBox__tweetButton">Tweet</button>
         {{ form_end(form) }}
     </div>
-
+    
     {# Boucle sur les tweets récupérés de la base de données #}
     {% for tweet in tweets %}
-        <div class="post">
-            <div class="post__avatar">
-                <img
-                    src="https://i.pinimg.com/originals/a6/58/32/a65832155622ac173337874f02b218fb.png"
-                    alt=""
-                />
-            </div>
-
-            <div class="post__body">
-                <div class="post__header">
-                    <div class="post__headerText">
-                        <h3>
-                            {{ tweet.username }}
-                            <span class="post__headerSpecial">
-                                @{{ tweet.username }}
-                            </span>
-                        </h3>
-                    </div>
-                    <div class="post__headerDescription">
-                        <p>{{ tweet.content }}</p>
-                    </div>
-                </div>
-                {# Optionnel : Afficher une image si nécessaire #}
-                {# <img src="URL_DE_L_IMAGE" alt="" /> #}
-                <div class="post__footer">
-                    <span class="material-icons"> repeat </span>
-                    <span class="material-icons"> favorite_border </span>
-                    <span class="material-icons"> publish </span>
-                </div>
-            </div>
-        </div>
-    {% else %}
-        <p>Aucun tweet trouvé.</p>
+        {% include 'menu/tweet.html.twig' %}
+        {% else %}
+            <p>Aucun tweet trouvé.</p>
     {% endfor %}
+    
 </div>
-
-
-{{ include('menu/widget.html.twig') }}
-
 {% endblock %}

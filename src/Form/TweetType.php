@@ -7,6 +7,7 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Validator\Constraints\NotBlank;
 
 class TweetType extends AbstractType
 {
@@ -16,6 +17,9 @@ class TweetType extends AbstractType
             ->add('content', TextareaType::class, [
                 'label' => 'What\'s happening?',
                 'attr' => ['placeholder' => "What's happening?"],
+                'constraints' => [
+                    new NotBlank(),
+                ]
             ]);
     }
 

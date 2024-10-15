@@ -1,0 +1,32 @@
+{# Boucle sur les tweets récupérés de la base de données #}
+<div class="post">
+    <div class="post__avatar">
+        <img
+            src="https://i.pinimg.com/originals/a6/58/32/a65832155622ac173337874f02b218fb.png"
+            alt=""
+        />
+    </div>
+
+    <div class="post__body">
+        <div class="post__header">
+            <div class="post__headerText">
+                <h3>
+                    {{ tweet.username }}
+                    <span class="post__headerSpecial">
+                        @{{ tweet.username }}
+                    </span>
+                </h3>
+            </div>
+            <div class="post__headerDescription">
+                <p>{{ tweet.content }}</p>
+            </div>
+        </div>
+        {# Optionnel : Afficher une image si nécessaire #}
+        {# <img src="URL_DE_L_IMAGE" alt="" /> #}
+        <div class="post__footer">
+            <span class="material-icons"> repeat </span>
+            <span class="material-icons"> favorite_border </span>
+            <span class="material-icons"> publish </span>
+        </div>
+    </div>
+</div>
