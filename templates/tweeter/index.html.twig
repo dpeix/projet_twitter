@@ -7,219 +7,58 @@
 {{ include('menu/menu.html.twig') }}
 
 <div class="feed">
-	<div class="feed__header">
-		<h2>Home</h2>
-	</div>
+    <div class="feed__header">
+        <h2>Home</h2>
+    </div>
     <div class="tweetBox">
-        <form>
+        {# Utilisation du formulaire Symfony dans Twig #}
+        {{ form_start(form) }}
             <div class="tweetbox__input">
+                <img src="https://i.pinimg.com/originals/a6/58/32/a65832155622ac173337874f02b218fb.png" alt="" />
+                {{ form_widget(form.content) }}
+            </div>
+            <button type="submit" class="tweetBox__tweetButton">Tweet</button>
+        {{ form_end(form) }}
+    </div>
+
+    {# Boucle sur les tweets récupérés de la base de données #}
+    {% for tweet in tweets %}
+        <div class="post">
+            <div class="post__avatar">
                 <img
-                src="https://i.pinimg.com/originals/a6/58/32/a65832155622ac173337874f02b218fb.png"
-                alt=""
+                    src="https://i.pinimg.com/originals/a6/58/32/a65832155622ac173337874f02b218fb.png"
+                    alt=""
                 />
-                <input type="text" placeholder="What's happening?" />
             </div>
-            <button class="tweetBox__tweetButton">Tweet</button>
-        </form>
-    </div>
 
-    <div class="post">
-        <div class="post__avatar">
-            <img
-                src="https://i.pinimg.com/originals/a6/58/32/a65832155622ac173337874f02b218fb.png"
-                alt=""
-            />
-        </div>
-
-        <div class="post__body">
-            <div class="post__header">
-                <div class="post__headerText">
-                    <h3>
-                        Somanath Goudar
-                        <span class="post__headerSpecial"
-                        ><span class="material-icons post__badge"> verified </span>@somanathg</span
-                        >
-                    </h3>
+            <div class="post__body">
+                <div class="post__header">
+                    <div class="post__headerText">
+                        <h3>
+                            {{ tweet.username }}
+                            <span class="post__headerSpecial">
+                                @{{ tweet.username }}
+                            </span>
+                        </h3>
+                    </div>
+                    <div class="post__headerDescription">
+                        <p>{{ tweet.content }}</p>
+                    </div>
                 </div>
-                <div class="post__headerDescription">
-                    <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit.</p>
-                </div>
-            </div>
-            <img
-                src="https://www.focus2move.com/wp-content/uploads/2020/01/Tesla-Roadster-2020-1024-03.jpg"
-                alt=""
-            />
-            <div class="post__footer">
-                <span class="material-icons"> repeat </span>
-                <span class="material-icons"> favorite_border </span>
-                <span class="material-icons"> publish </span>
-            </div>
-        </div>
-    </div>
-
-    <div class="post">
-        <div class="post__avatar">
-            <img
-                src="https://i.pinimg.com/originals/a6/58/32/a65832155622ac173337874f02b218fb.png"
-                alt=""
-            />
-        </div>
-
-        <div class="post__body">
-            <div class="post__header">
-                <div class="post__headerText">
-                    <h3>
-                        Somanath Goudar
-                        <span class="post__headerSpecial"
-                        ><span class="material-icons post__badge"> verified </span>@somanathg</span
-                        >
-                    </h3>
-                </div>
-                <div class="post__headerDescription">
-                    <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit.</p>
+                {# Optionnel : Afficher une image si nécessaire #}
+                {# <img src="URL_DE_L_IMAGE" alt="" /> #}
+                <div class="post__footer">
+                    <span class="material-icons"> repeat </span>
+                    <span class="material-icons"> favorite_border </span>
+                    <span class="material-icons"> publish </span>
                 </div>
             </div>
-            <img
-                src="https://www.focus2move.com/wp-content/uploads/2020/01/Tesla-Roadster-2020-1024-03.jpg"
-                alt=""
-            />
-            <div class="post__footer">
-                <span class="material-icons"> repeat </span>
-                <span class="material-icons"> favorite_border </span>
-                <span class="material-icons"> publish </span>
-            </div>
         </div>
-    </div>
-    <div class="post">
-        <div class="post__avatar">
-            <img
-                src="https://i.pinimg.com/originals/a6/58/32/a65832155622ac173337874f02b218fb.png"
-                alt=""
-            />
-        </div>
-
-        <div class="post__body">
-            <div class="post__header">
-                <div class="post__headerText">
-                    <h3>
-                        Somanath Goudar
-                        <span class="post__headerSpecial"
-                        ><span class="material-icons post__badge"> verified </span>@somanathg</span
-                        >
-                    </h3>
-                </div>
-                <div class="post__headerDescription">
-                    <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit.</p>
-                </div>
-            </div>
-            <img
-                src="https://www.focus2move.com/wp-content/uploads/2020/01/Tesla-Roadster-2020-1024-03.jpg"
-                alt=""
-            />
-            <div class="post__footer">
-                <span class="material-icons"> repeat </span>
-                <span class="material-icons"> favorite_border </span>
-                <span class="material-icons"> publish </span>
-            </div>
-        </div>
-    </div>
-    <div class="post">
-        <div class="post__avatar">
-            <img
-                src="https://i.pinimg.com/originals/a6/58/32/a65832155622ac173337874f02b218fb.png"
-                alt=""
-            />
-        </div>
-
-        <div class="post__body">
-            <div class="post__header">
-                <div class="post__headerText">
-                    <h3>
-                        Somanath Goudar
-                        <span class="post__headerSpecial"
-                        ><span class="material-icons post__badge"> verified </span>@somanathg</span
-                        >
-                    </h3>
-                </div>
-                <div class="post__headerDescription">
-                    <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit.</p>
-                </div>
-            </div>
-            <img
-                src="https://www.focus2move.com/wp-content/uploads/2020/01/Tesla-Roadster-2020-1024-03.jpg"
-                alt=""
-            />
-            <div class="post__footer">
-                <span class="material-icons"> repeat </span>
-                <span class="material-icons"> favorite_border </span>
-                <span class="material-icons"> publish </span>
-            </div>
-        </div>
-    </div>
-    <div class="post">
-        <div class="post__avatar">
-            <img
-                src="https://i.pinimg.com/originals/a6/58/32/a65832155622ac173337874f02b218fb.png"
-                alt=""
-            />
-        </div>
-
-        <div class="post__body">
-            <div class="post__header">
-                <div class="post__headerText">
-                    <h3>
-                        Somanath Goudar
-                        <span class="post__headerSpecial"
-                        ><span class="material-icons post__badge"> verified </span>@somanathg</span
-                        >
-                    </h3>
-                </div>
-                <div class="post__headerDescription">
-                    <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit.</p>
-                </div>
-            </div>
-            <img
-                src="https://www.focus2move.com/wp-content/uploads/2020/01/Tesla-Roadster-2020-1024-03.jpg"
-                alt=""
-            />
-            <div class="post__footer">
-                <span class="material-icons"> repeat </span>
-                <span class="material-icons"> favorite_border </span>
-                <span class="material-icons"> publish </span>
-            </div>
-        </div>
-    </div>
-
-    <div class="post">
-        <div class="post__avatar">
-            <img
-                src="https://i.pinimg.com/originals/a6/58/32/a65832155622ac173337874f02b218fb.png"
-                alt=""
-            />
-        </div>
-
-        <div class="post__body">
-            <div class="post__header">
-                <div class="post__headerText">
-                    <h3>
-                        DarkSazuke
-                        <span class="post__headerSpecial"
-                        ><span class="material-icons post__badge"> verified </span>@LyrOwO</span
-                        >
-                    </h3>
-                </div>
-                <div class="post__headerDescription">
-                    <p>Rémi il est trop sympa</p>
-                </div>
-            </div>
-            <div class="post__footer">
-                <span class="material-icons"> repeat </span>
-                <span class="material-icons"> favorite_border </span>
-                <span class="material-icons"> publish </span>
-            </div>
-        </div>
-    </div>
+    {% else %}
+        <p>Aucun tweet trouvé.</p>
+    {% endfor %}
 </div>
+
 
 {{ include('menu/widget.html.twig') }}
 
