@@ -1,0 +1,39 @@
+2024-10-08T12:30:26.827Z
+Error: connect ECONNREFUSED 127.0.0.1:3306
+    at createConnection (/usr/lib/node_modules/@dbml/cli/node_modules/mysql2/promise.js:253:31)
+    at connectMySQL (/usr/lib/node_modules/@dbml/cli/node_modules/@dbml/connector/dist/connectors/mysqlConnector.js:8:57)
+    at fetchSchemaJson (/usr/lib/node_modules/@dbml/cli/node_modules/@dbml/connector/dist/connectors/mysqlConnector.js:366:26)
+    at Object.fetchSchemaJson (/usr/lib/node_modules/@dbml/cli/node_modules/@dbml/connector/dist/connectors/connector.js:16:57)
+    at connectionHandler (/usr/lib/node_modules/@dbml/cli/lib/cli/connector.js:24:51)
+    at Object.db2dbml (/usr/lib/node_modules/@dbml/cli/lib/cli/index.js:62:26)
+    at Object.<anonymous> (/usr/lib/node_modules/@dbml/cli/bin/db2dbml.js:4:19)
+    at Module._compile (node:internal/modules/cjs/loader:1546:14)
+    at Module._extensions..js (node:internal/modules/cjs/loader:1691:10)
+    at Module.load (node:internal/modules/cjs/loader:1317:32)
+
+2024-10-08T12:31:21.427Z
+Error: connect ECONNREFUSED 127.0.0.1:3306
+    at createConnection (/usr/lib/node_modules/@dbml/cli/node_modules/mysql2/promise.js:253:31)
+    at connectMySQL (/usr/lib/node_modules/@dbml/cli/node_modules/@dbml/connector/dist/connectors/mysqlConnector.js:8:57)
+    at fetchSchemaJson (/usr/lib/node_modules/@dbml/cli/node_modules/@dbml/connector/dist/connectors/mysqlConnector.js:366:26)
+    at Object.fetchSchemaJson (/usr/lib/node_modules/@dbml/cli/node_modules/@dbml/connector/dist/connectors/connector.js:16:57)
+    at connectionHandler (/usr/lib/node_modules/@dbml/cli/lib/cli/connector.js:24:51)
+    at Object.db2dbml (/usr/lib/node_modules/@dbml/cli/lib/cli/index.js:62:26)
+    at Object.<anonymous> (/usr/lib/node_modules/@dbml/cli/bin/db2dbml.js:4:19)
+    at Module._compile (node:internal/modules/cjs/loader:1546:14)
+    at Module._extensions..js (node:internal/modules/cjs/loader:1691:10)
+    at Module.load (node:internal/modules/cjs/loader:1317:32)
+
+2024-10-08T12:35:06.585Z
+Error: connect ECONNREFUSED 127.0.0.1:3306
+    at createConnection (/usr/lib/node_modules/@dbml/cli/node_modules/mysql2/promise.js:253:31)
+    at connectMySQL (/usr/lib/node_modules/@dbml/cli/node_modules/@dbml/connector/dist/connectors/mysqlConnector.js:8:57)
+    at fetchSchemaJson (/usr/lib/node_modules/@dbml/cli/node_modules/@dbml/connector/dist/connectors/mysqlConnector.js:366:26)
+    at Object.fetchSchemaJson (/usr/lib/node_modules/@dbml/cli/node_modules/@dbml/connector/dist/connectors/connector.js:16:57)
+    at connectionHandler (/usr/lib/node_modules/@dbml/cli/lib/cli/connector.js:24:51)
+    at Object.db2dbml (/usr/lib/node_modules/@dbml/cli/lib/cli/index.js:62:26)
+    at Object.<anonymous> (/usr/lib/node_modules/@dbml/cli/bin/db2dbml.js:4:19)
+    at Module._compile (node:internal/modules/cjs/loader:1546:14)
+    at Module._extensions..js (node:internal/modules/cjs/loader:1691:10)
+    at Module.load (node:internal/modules/cjs/loader:1317:32)
+
