@@ -295,3 +295,46 @@ body {
 .tweetBox button.tweetBox__tweetButton:hover {
     background-color: #008bb9; /* Couleur plus foncée au survol */
 }
+
+/* public/css/profile.css */
+.profile {
+    width: 600px;
+    margin: 0 auto;
+    font-family: Arial, sans-serif;
+}
+
+.profile-header {
+    text-align: left;
+    padding: 10px;
+    padding-left: 0px;
+}
+
+.profile-header p{
+    padding: 5px;
+    padding-left: 0px
+}
+
+.profile-image {
+    border-radius: 50%;
+    width: 150px;
+    height: 150px;
+}
+
+.tweets-section {
+    margin-top: 20px;
+}
+
+.tweet {
+    border-bottom: 1px solid #e1e8ed;
+    padding: 10px 0;
+}
+
+.tweet p {
+    margin: 0;
+    font-size: 16px;
+}
+
+.date {
+    color: #657786;
+    font-size: 12px;
+}

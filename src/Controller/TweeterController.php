@@ -18,18 +18,6 @@ class TweeterController extends AbstractController
     {
         // Créer une instance de Tweet
         $tweet = new Tweet();
-        $tweet->setCreatedAt(new \DateTimeImmutable()); // Définir la date de création automatiquement
-
-        // Si tu as un système d'utilisateur connecté, tu peux récupérer l'username depuis l'utilisateur connecté
-        $user = $this->getUser();
-        if ($user) {
-            $tweet->setUsername($user->getUsername()); // Définir l'username
-        }
-
-        // Définir les valeurs du tweet à `true` par défaut
-        $tweet->setState(true);
-        $tweet->setLikes(0);
-        $tweet->setRetweets(0);
 
         // Créer un formulaire
         $form = $this->createForm(TweetType::class, $tweet);
@@ -37,6 +25,19 @@ class TweeterController extends AbstractController
 
         // Si le formulaire est soumis et valide
         if ($form->isSubmitted() && $form->isValid()) {
+            $tweet->setCreatedAt(new \DateTimeImmutable()); // Définir la date de création automatiquement
+
+            // Si tu as un système d'utilisateur connecté, tu peux récupérer l'username depuis l'utilisateur connecté
+            $user = $this->getUser();
+            if ($user) {
+                $tweet->setUsername($user->getUsername()); // Définir l'username
+                $tweet->setUser($user);
+            }
+
+            // Définir les valeurs du tweet à `true` par défaut
+            $tweet->setState(true);
+            $tweet->setLikes(0);
+            $tweet->setRetweets(0);
             // Sauvegarder le tweet dans la base de données
             $em->persist($tweet);
             $em->flush();

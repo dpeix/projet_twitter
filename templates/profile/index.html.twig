@@ -1,11 +1,27 @@
 {% extends 'base.html.twig' %}
 
+{% block title %}{{ app.user }}'s Profile{% endblock %}
+
 {% block stylesheets %}
-    
+
 {% endblock %}
 
 {% set page_title = 'Profile' %}
 
 {% block body %}
+<div class="profile">
+    <div class="profile-header">
+        <p>@{{ app.user.username }}</p>
+        <p>{{ user.bio }}</p>
+    </div>
 
+    <div class="tweets-section">
+        <h3>Tweets</h3>
+        {% for tweet in tweets %}
+        {% include 'menu/tweet.html.twig' %}
+        {% else %}
+            <p>No tweets yet.</p>
+        {% endfor %}
+    </div>
+</div>
 {% endblock %}

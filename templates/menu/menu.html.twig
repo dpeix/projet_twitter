@@ -30,7 +30,7 @@
 		<h2>Lists</h2>
 	</div>
 
-	<div class="sidebarOption" onclick="window.location.href='{{ path('profile') }}';" style="cursor:pointer;">
+	<div class="sidebarOption" onclick="window.location.href='{{ path('profile', {'username': app.user.username}) }}';" style="cursor:pointer;">
 		<span class="material-icons"> perm_identity </span>
 		<h2>Profile</h2>
 	</div>

@@ -11,10 +11,11 @@
         <div class="post__header">
             <div class="post__headerText">
                 <h3>
-                    {{ tweet.username }}
+                    {{ tweet.user.username }}
                     <span class="post__headerSpecial">
-                        @{{ tweet.username }}
+                        @{{ tweet.user.username }}
                     </span>
+                    <span class="date">{{ tweet.createdAt|date('d M Y H:i', "Europe/Paris") }}</span>
                 </h3>
             </div>
             <div class="post__headerDescription">

@@ -34,10 +34,11 @@
     <body>
         {{ include('menu/menu.html.twig') }}
 
-        {{ include('menu/header.html.twig') }}
+        <div class="feed">
+            {{ include('menu/header.html.twig') }}
 
-        {% block body %}{% endblock %}
-
+            {% block body %}{% endblock %}
+        </div>
         {{ include('menu/widget.html.twig') }}
     </body>
 </html>
