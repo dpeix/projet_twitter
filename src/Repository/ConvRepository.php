@@ -3,6 +3,7 @@
 namespace App\Repository;
 
 use App\Entity\Conv;
+use App\Entity\User;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 
@@ -14,6 +15,17 @@ class ConvRepository extends ServiceEntityRepository
     public function __construct(ManagerRegistry $registry)
     {
         parent::__construct($registry, Conv::class);
+    }
+
+    public function findByUser(User $user)
+    {
+        return $this->createQueryBuilder('c')
+            ->innerJoin('c.convUsers', 'cu')
+            ->where('cu.users = :user')
+            ->setParameter('user', $user)
+            ->orderBy('c.date_last_message', 'DESC')
+            ->getQuery()
+            ->getResult();
     }
 
 //    /**

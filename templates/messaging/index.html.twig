@@ -1,0 +1,20 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ app.user }}'s Convs{% endblock %}
+
+{% set page_title = 'Conv' %}
+
+{% block body %}
+<h2>Vos Convs</h2>
+<ul>
+    {% for conv in convs %}
+        <li>
+            <a href="{{ path('messaging_conversation', { id: conv.id }) }}">
+                Conv #{{ conv.id }} - Dernier message le {{ conv.dateLastMessage|date('d/m/Y H:i') }}
+            </a>
+        </li>
+    {% else %}
+        <p>Vous n'avez aucune conv.</p>
+    {% endfor %}
+</ul>
+{% endblock %}

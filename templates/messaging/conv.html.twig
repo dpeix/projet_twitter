@@ -1,0 +1,24 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ app.user }}'s Convs{% endblock %}
+
+{% set page_title = 'Conv' %}
+
+{% block body %}
+<h2>Messages dans la conversation #{{ conv.id }}</h2>
+<div class="message-list">
+    {% for message in messages %}
+        <div class="message">
+            <p><strong>{{ message.author }}:</strong> {{ message.text }}</p>
+            <p class="timestamp">{{ message.datePost|date('d/m/Y H:i') }}</p>
+        </div>
+    {% else %}
+        <p>Aucun message dans cette conversation.</p>
+    {% endfor %}
+</div>
+
+<form method="post" action="{{ path('send_message', { id: conv.id }) }}">
+    <textarea name="text" placeholder="Écrivez un message..."></textarea>
+    <button type="submit">Envoyer</button>
+</form>
+{% endblock %}
