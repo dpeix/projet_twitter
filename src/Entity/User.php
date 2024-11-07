@@ -73,16 +73,16 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     private Collection $comments;
 
     /**
-     * @var Collection<int, Participant>
+     * @var Collection<int, ConvUser>
      */
-    #[ORM\OneToMany(targetEntity: Participant::class, mappedBy: 'user')]
-    private Collection $participants;
+    #[ORM\OneToMany(targetEntity: ConvUser::class, mappedBy: 'users')]
+    private Collection $convUsers;
 
     public function __construct()
     {
         $this->tweets = new ArrayCollection();
         $this->comments = new ArrayCollection();
-        $this->participants = new ArrayCollection();
+        $this->convUsers = new ArrayCollection();
     }
 
     public function __toString(): string
@@ -323,29 +323,29 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     }
 
     /**
-     * @return Collection<int, Participant>
+     * @return Collection<int, ConvUser>
      */
-    public function getParticipants(): Collection
+    public function getConvUsers(): Collection
     {
-        return $this->participants;
+        return $this->convUsers;
     }
 
-    public function addParticipant(Participant $participant): static
+    public function addConvUser(ConvUser $convUser): static
     {
-        if (!$this->participants->contains($participant)) {
-            $this->participants->add($participant);
-            $participant->setUser($this);
+        if (!$this->convUsers->contains($convUser)) {
+            $this->convUsers->add($convUser);
+            $convUser->setUsers($this);
         }
 
         return $this;
     }
 
-    public function removeParticipant(Participant $participant): static
+    public function removeConvUser(ConvUser $convUser): static
     {
-        if ($this->participants->removeElement($participant)) {
+        if ($this->convUsers->removeElement($convUser)) {
             // set the owning side to null (unless already changed)
-            if ($participant->getUser() === $this) {
-                $participant->setUser(null);
+            if ($convUser->getUsers() === $this) {
+                $convUser->setUsers(null);
             }
         }
 

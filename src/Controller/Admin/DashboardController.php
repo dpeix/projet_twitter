@@ -4,12 +4,16 @@ namespace App\Controller\Admin;
 
 use App\Entity\User;
 use App\Entity\Tweet;
+use App\Entity\Conv;
+use App\Entity\ConvUser;
+use App\Entity\Message;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Dashboard;
 use EasyCorp\Bundle\EasyAdminBundle\Config\MenuItem;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractDashboardController;
 use EasyCorp\Bundle\EasyAdminBundle\Router\AdminUrlGenerator;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
 
 class DashboardController extends AbstractDashboardController
 {
@@ -50,5 +54,8 @@ class DashboardController extends AbstractDashboardController
         yield MenuItem::linktoRoute('Back to the website', 'fas fa-home', 'homepage');
         yield MenuItem::linkToCrud('Users', 'fas fa-map-marker-alt', User::class);
         yield MenuItem::linkToCrud('Tweets', 'fas fa-map-marker-alt', Tweet::class);
+        yield MenuItem::linkToCrud('Convs', 'fas fa-map-marker-alt', Conv::class);
+        yield MenuItem::linkToCrud('ConvUsers', 'fas fa-map-marker-alt', ConvUser::class);
+        yield MenuItem::linkToCrud('Messages', 'fas fa-map-marker-alt', Message::class);
     }
 }

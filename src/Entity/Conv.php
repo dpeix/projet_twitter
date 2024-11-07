@@ -22,22 +22,19 @@ class Conv
     #[ORM\OneToMany(targetEntity: Message::class, mappedBy: 'conv')]
     private Collection $messages;
 
-    #[ORM\ManyToOne(inversedBy: 'convs')]
-    private ?ParticipantConv $participantConv = null;
-
-    /**
-     * @var Collection<int, ParticipantConv>
-     */
-    #[ORM\OneToMany(targetEntity: ParticipantConv::class, mappedBy: 'convs')]
-    private Collection $participantConvs;
-
     #[ORM\Column]
     private ?\DateTimeImmutable $date_last_message = null;
+
+    /**
+     * @var Collection<int, ConvUser>
+     */
+    #[ORM\OneToMany(targetEntity: ConvUser::class, mappedBy: 'convs')]
+    private Collection $convUsers;
 
     public function __construct()
     {
         $this->messages = new ArrayCollection();
-        $this->participantConvs = new ArrayCollection();
+        $this->convUsers = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -75,48 +72,6 @@ class Conv
         return $this;
     }
 
-    public function getParticipantConv(): ?ParticipantConv
-    {
-        return $this->participantConv;
-    }
-
-    public function setParticipantConv(?ParticipantConv $participantConv): static
-    {
-        $this->participantConv = $participantConv;
-
-        return $this;
-    }
-
-    /**
-     * @return Collection<int, ParticipantConv>
-     */
-    public function getParticipantConvs(): Collection
-    {
-        return $this->participantConvs;
-    }
-
-    public function addParticipantConv(ParticipantConv $participantConv): static
-    {
-        if (!$this->participantConvs->contains($participantConv)) {
-            $this->participantConvs->add($participantConv);
-            $participantConv->setConvs($this);
-        }
-
-        return $this;
-    }
-
-    public function removeParticipantConv(ParticipantConv $participantConv): static
-    {
-        if ($this->participantConvs->removeElement($participantConv)) {
-            // set the owning side to null (unless already changed)
-            if ($participantConv->getConvs() === $this) {
-                $participantConv->setConvs(null);
-            }
-        }
-
-        return $this;
-    }
-
     public function getDateLastMessage(): ?\DateTimeImmutable
     {
         return $this->date_last_message;
@@ -125,6 +80,36 @@ class Conv
     public function setDateLastMessage(\DateTimeImmutable $date_last_message): static
     {
         $this->date_last_message = $date_last_message;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, ConvUser>
+     */
+    public function getConvUsers(): Collection
+    {
+        return $this->convUsers;
+    }
+
+    public function addConvUser(ConvUser $convUser): static
+    {
+        if (!$this->convUsers->contains($convUser)) {
+            $this->convUsers->add($convUser);
+            $convUser->setConvs($this);
+        }
+
+        return $this;
+    }
+
+    public function removeConvUser(ConvUser $convUser): static
+    {
+        if ($this->convUsers->removeElement($convUser)) {
+            // set the owning side to null (unless already changed)
+            if ($convUser->getConvs() === $this) {
+                $convUser->setConvs(null);
+            }
+        }
 
         return $this;
     }
