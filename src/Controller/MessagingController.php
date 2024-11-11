@@ -24,8 +24,10 @@ class MessagingController extends AbstractController
     }
 
     #[Route('/messaging/{id}', name: 'messaging_conv')]
-    public function conv(int $id, ConvRepository $convRep): Response
+    public function conv(string $id, ConvRepository $convRep): Response
     {
+        $conv = $convRep->find((int) $id);
+        
         $conv = $convRep->getRepository(Conv::class)
             ->find($id);
 
@@ -53,6 +55,34 @@ class MessagingController extends AbstractController
         $em->flush();
 
         return new JsonResponse(['status' => 'success']);
+    }
+
+    #[Route('/messaging/create', name: 'messaging_create', methods: ['POST'])]
+    public function createConversation(Request $request, EntityManagerInterface $em): RedirectResponse
+    {
+        // Récupérer l'utilisateur courant
+        $user = $this->getUser();
+        
+        // Créer une nouvelle conversation
+        $conv = new Conv();
+        $conv->setDateLastMessage(new \DateTimeImmutable()); // Initialisation de la date du dernier message
+
+        // Sauvegarder la conversation dans la base de données
+        $em->persist($conv);
+        $em->flush();
+
+        // Ajouter l'utilisateur à la conversation
+        $convUser = new ConvUser();
+        $convUser->setUser($user);
+        $convUser->setConv($conv);
+        $convUser->setDateLastCheck(new \DateTimeImmutable()); // Date de la dernière vérification
+
+        // Sauvegarder l'association dans la base de données
+        $em->persist($convUser);
+        $em->flush();
+
+        // Rediriger vers la page de cette conversation
+        return $this->redirectToRoute('messaging_conv', ['id' => $conv->getId()]);
     }
 
 }

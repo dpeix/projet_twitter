@@ -17,4 +17,10 @@
         <p>Vous n'avez aucune conv.</p>
     {% endfor %}
 </ul>
+
+<h2>Créer une nouvelle conversation</h2>
+
+    <form action="{{ path('messaging_create') }}" method="POST">
+        <button type="submit">Créer une conversation</button>
+    </form>
 {% endblock %}
