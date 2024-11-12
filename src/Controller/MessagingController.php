@@ -28,11 +28,10 @@ class MessagingController extends AbstractController
     {
         $conv = $convRep->find((int) $id);
         
-        $conv = $convRep->getRepository(Conv::class)
-            ->find($id);
+        $conv = $convRep->findAll();
 
-        $messages = $convRep->getRepository(Conv::class)
-            ->findBy(['conv' => $conv], ['datePost' => 'ASC']);
+        $messages = $convRep->findAll();
+            //->findBy(['conv' => $conv], ['datePost' => 'ASC']);
 
         return $this->render('messaging/conv.html.twig', [
             'conv' => $conv,

@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use APP\Entity\User;
 use App\Entity\Tweet;
 use App\Form\TweetType;
 use App\Repository\TweetRepository;
@@ -29,12 +30,11 @@ class TweeterController extends AbstractController
 
             // Si tu as un système d'utilisateur connecté, tu peux récupérer l'username depuis l'utilisateur connecté
             $user = $this->getUser();
-            if ($user) {
-                $tweet->setUsername($user->getUsername()); // Définir l'username
+            if ($user) { 
                 $tweet->setUser($user);
             }
 
-            // Définir les valeurs du tweet à `true` par défaut
+            // Définir les valeurs du tweet par défaut
             $tweet->setState(true);
             $tweet->setLikes(0);
             $tweet->setRetweets(0);
