@@ -10,7 +10,7 @@
     {% for message in messages %}
         <div class="message">
             <p><strong>{{ message.author }}:</strong> {{ message.text }}</p>
-            <p class="timestamp">{{ message.datePost|date('d/m/Y H:i') }}</p>
+            <p class="timestamp">{{ message.datePost|date('d/m/Y H:i', "Europe/Paris") }}</p>
         </div>
     {% else %}
         <p>Aucun message dans cette conversation.</p>

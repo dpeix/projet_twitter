@@ -10,7 +10,7 @@
     {% for conv in convs %}
         <li>
             <a href="{{ path('messaging_conv', { id: conv.id }) }}">
-                Conv #{{ conv.id }} - Dernier message le {{ conv.dateLastMessage|date('d/m/Y H:i') }}
+                Conv #{{ conv.id }} - Dernier message le {{ conv.dateLastMessage|date('d/m/Y H:i', "Europe/Paris") }}
             </a>
         </li>
     {% else %}
@@ -19,8 +19,9 @@
 </ul>
 
 <h2>Créer une nouvelle conversation</h2>
-
-    <form action="{{ path('messaging_create') }}" method="POST">
+<form action="{{ path('messaging_new') }}" method="POST">
         <button type="submit">Créer une conversation</button>
     </form>
+
+    
 {% endblock %}

@@ -4,10 +4,17 @@ namespace App\Controller;
 
 use App\Entity\User;
 use App\Entity\Conv;
+use App\Entity\ConvUser;
 use App\Entity\Message;
 use App\Repository\ConvRepository;
+use App\Repository\UserRepository;
+use App\Form\ConvType;
+use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\Routing\Annotation\Route;
 
 class MessagingController extends AbstractController
@@ -23,15 +30,16 @@ class MessagingController extends AbstractController
         ]);
     }
 
-    #[Route('/messaging/{id}', name: 'messaging_conv')]
+    #[Route('/messaging/{id}', name: 'messaging_conv', requirements: ['id' => '\d+'])]
     public function conv(string $id, ConvRepository $convRep): Response
     {
-        $conv = $convRep->find((int) $id);
-        
-        $conv = $convRep->findAll();
+        $conv = $convRep->find($id);
 
-        $messages = $convRep->findAll();
-            //->findBy(['conv' => $conv], ['datePost' => 'ASC']);
+        if (!$conv) {
+            throw $this->createNotFoundException('Conversation not found');
+        }
+
+        $messages = $conv->getMessages(); // Assuming getMessages() fetches associated messages
 
         return $this->render('messaging/conv.html.twig', [
             'conv' => $conv,
@@ -40,49 +48,66 @@ class MessagingController extends AbstractController
     }
 
     #[Route('/messaging/{id}/send', name: 'send_message', methods: ['POST'])]
-    public function sendMessage(Request $request, Conv $conversation, ConvRepository $convRep): JsonResponse
+    public function sendMessage(int $id, Request $request, ConvRepository $convRep, EntityManagerInterface $em, Conv $conv): Response
     {
+        $conversation = $convRep->find($id);
+
         $messageText = $request->request->get('text');
+        // Création du message
         $message = new Message();
         $message->setConv($conversation);
         $message->setAuthor($this->getUser()->getUsername());
         $message->setText($messageText);
         $message->setDatePost(new \DateTime());
+        
+        $conv->setDateLastMessage(new \DateTimeImmutable());
 
-        $em = $convRep->getRepository(Conv::class)->getManager();
+        // Persister le message
         $em->persist($message);
         $em->flush();
 
-        return new JsonResponse(['status' => 'success']);
+        // Rediriger vers la page de la conversation avec un message de succès
+        $this->addFlash('success', 'Message sent successfully');
+        return $this->redirectToRoute('messaging_conv', ['id' => $id]);
     }
 
-    #[Route('/messaging/create', name: 'messaging_create', methods: ['POST'])]
-    public function createConversation(Request $request, EntityManagerInterface $em): RedirectResponse
+
+    #[Route('/messaging/new', name: 'messaging_new')]
+    public function new(Request $request, EntityManagerInterface $em, UserRepository $userRepo): Response
     {
-        // Récupérer l'utilisateur courant
-        $user = $this->getUser();
-        
-        // Créer une nouvelle conversation
         $conv = new Conv();
-        $conv->setDateLastMessage(new \DateTimeImmutable()); // Initialisation de la date du dernier message
 
-        // Sauvegarder la conversation dans la base de données
-        $em->persist($conv);
-        $em->flush();
+        $form = $this->createForm(ConvType::class, $conv);
+        $form->handleRequest($request);
 
-        // Ajouter l'utilisateur à la conversation
-        $convUser = new ConvUser();
-        $convUser->setUser($user);
-        $convUser->setConv($conv);
-        $convUser->setDateLastCheck(new \DateTimeImmutable()); // Date de la dernière vérification
+        if ($form->isSubmitted() && $form->isValid()) {
+            $currentUser = $this->getUser();
+            $selectedUser = $form->get('convUsers')->getData(); // Obtenez les utilisateurs sélectionnés
 
-        // Sauvegarder l'association dans la base de données
-        $em->persist($convUser);
-        $em->flush();
+            $conv->setDateLastMessage(new \DateTimeImmutable());
+            $em->persist($conv); // Persist la conversation
+            $em->flush();
 
-        // Rediriger vers la page de cette conversation
-        return $this->redirectToRoute('messaging_conv', ['id' => $conv->getId()]);
+            // Persist des relations entre les utilisateurs et la conversation
+            foreach ( $selectedUser as $user) {
+                $convUser = new ConvUser();
+                $convUser->setUsers($user);
+                $convUser->setConvs($conv);
+                $convUser->setDateLastCheck(new \DateTimeImmutable());
+
+                $em->persist($convUser);
+                $em->flush();
+                $conv->addConvUser($convUser);
+                $em->flush();
+            }
+            //$em->flush();
+
+            return $this->redirectToRoute('messaging_conv', ['id' => $conv->getId()]);
+        }
+
+        return $this->render('messaging/new.html.twig', [
+            'form' => $form->createView(),
+        ]);
     }
 
 }
-
