@@ -1,27 +1,34 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}{{ app.user }}'s Convs{% endblock %}
+{% block title %}Conversations de {{ app.user.username }}{% endblock %}
 
-{% set page_title = 'Conv' %}
+{% set page_title = 'Mes Conversations' %}
 
 {% block body %}
-<h2>Vos Convs</h2>
-<ul>
-    {% for conv in convs %}
-        <li>
-            <a href="{{ path('messaging_conv', { id: conv.id }) }}">
-                Conv #{{ conv.id }} - Dernier message le {{ conv.dateLastMessage|date('d/m/Y H:i', "Europe/Paris") }}
-            </a>
-        </li>
-    {% else %}
-        <p>Vous n'avez aucune conv.</p>
-    {% endfor %}
-</ul>
+<div class="conversation-page">
+    <h2 class="page-title">Vos Conversations</h2>
 
-<h2>Créer une nouvelle conversation</h2>
-<form action="{{ path('messaging_new') }}" method="POST">
-        <button type="submit">Créer une conversation</button>
-    </form>
-
+    <div class="create-conversation">
+        <form action="{{ path('messaging_new') }}" method="POST">
+            <button type="submit" class="create-button">Créer une conversation</button>
+        </form>
+    </div>
     
+    <ul class="conversation-list">
+        {% for conv in convs %}
+            <li class="conversation-item">
+                <a href="{{ path('messaging_conv', { id: conv.id }) }}" class="conversation-link">
+                    <div class="conversation-info">
+                        <span class="conversation-id">#{{ conv.id }}</span>
+                        <span class="conversation-date">
+                            Dernier message : {{ conv.dateLastMessage|date('d/m/Y H:i', "Europe/Paris") }}
+                        </span>
+                    </div>
+                </a>
+            </li>
+        {% else %}
+            <p class="no-conversations">Vous n'avez aucune conversation.</p>
+        {% endfor %}
+    </ul>
+</div>
 {% endblock %}

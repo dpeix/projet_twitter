@@ -1,11 +1,16 @@
 {% extends 'base.html.twig' %}
 
-{% set page_title = 'Conv' %}
+{% set page_title = 'Créer une Nouvelle Conversation' %}
 
 {% block body %}
-    <h2>Créer une nouvelle conversation</h2>
+<div class="new-conversation-container">
+    <h2 class="new-conversation-title">Créer une Nouvelle Conversation</h2>
 
-    {{ form_start(form) }}
-        {{ form_widget(form) }}
-    {{ form_end(form) }}
+    <div class="new-conversation-form">
+        {{ form_start(form, { 'attr': { 'class': 'form' } }) }}
+            {{ form_widget(form, { 'attr': { 'class': 'form-fields' } }) }}
+            <button type="submit" class="form-submit">Créer</button>
+        {{ form_end(form) }}
+    </div>
+</div>
 {% endblock %}

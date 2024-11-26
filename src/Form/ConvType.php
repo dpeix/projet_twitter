@@ -10,6 +10,8 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
+
 
 class ConvType extends AbstractType
 {
@@ -23,9 +25,6 @@ class ConvType extends AbstractType
                 'multiple' => true,
                 'mapped' => false,
                 'label' => 'Sélectionner un utilisateur',
-            ])
-            ->add('save', SubmitType::class, [
-                'label' => 'Créer la conversation',
             ]);
     }
 

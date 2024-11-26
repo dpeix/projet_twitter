@@ -338,3 +338,266 @@ body {
     color: #657786;
     font-size: 12px;
 }
+
+.conversation-container {
+    padding: 1%;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.conversation-title {
+    text-align: center;
+    font-size: 1.8rem;
+    color: #333;
+    margin-bottom: 20px;
+}
+
+.message-list {
+    overflow-y: auto;
+    margin-bottom: 20px;
+}
+
+.message-item {
+    margin-bottom: 15px;
+    padding: 10px;
+    border-bottom: 1px solid #ddd;
+}
+
+.message-item:last-child {
+    border-bottom: none;
+}
+
+.message-author {
+    font-weight: bold;
+    color: #007BFF;
+}
+
+.message-text {
+    margin: 5px 0;
+    font-size: 1rem;
+    color: #555;
+}
+
+.message-timestamp {
+    font-size: 0.85rem;
+    color: #999;
+    text-align: right;
+}
+
+.no-messages {
+    text-align: center;
+    color: #999;
+    font-style: italic;
+}
+
+.message-form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.message-input {
+    width: 100%;
+    height: 80px;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 1rem;
+}
+
+.message-submit {
+    align-self: flex-end;
+    padding: 10px 20px;
+    background-color: #007BFF;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.message-submit:hover {
+    background-color: #0056b3;
+}
+
+.conversation-page {
+    padding: 20px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    font-family: Arial, sans-serif;
+}
+
+.page-title {
+    text-align: center;
+    font-size: 1.8rem;
+    color: #333;
+    margin-bottom: 20px;
+}
+
+.conversation-list {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 20px 0;
+}
+
+.conversation-item {
+    margin-bottom: 10px;
+    padding: 10px;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.conversation-item:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 10px rgba(0, 0, 0, 0.1);
+}
+
+.conversation-link {
+    text-decoration: none;
+    color: #007BFF;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.conversation-link:hover {
+    text-decoration: underline;
+}
+
+.conversation-info {
+    display: flex;
+    flex-direction: column;
+}
+
+.conversation-id {
+    font-weight: bold;
+    font-size: 1.2rem;
+}
+
+.conversation-date {
+    font-size: 0.9rem;
+    color: #555;
+}
+
+.no-conversations {
+    text-align: center;
+    color: #999;
+    font-style: italic;
+    margin-bottom: 20px;
+}
+
+.create-conversation {
+    text-align: center;
+    margin-top: 20px;
+    padding-bottom: 5%;
+}
+
+.create-button {
+    padding: 10px 20px;
+    background-color: #007BFF;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.create-button:hover {
+    background-color: #0056b3;
+}
+
+.message-list {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.message-item {
+    width: 90%;
+    padding: 10px;
+    border-radius: 40px;
+    background-color: #f1f1f1;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.message-other {
+    align-self: flex-start;
+    background-color: #555;
+}
+
+.message-own {
+    align-self: flex-end;
+    background-color: #007BFF;
+    color: white;
+    text-align: right;
+}
+
+.message-author {
+    font-weight: bold;
+    margin-bottom: 5px;
+    color: white;
+}
+
+.message-text {
+    color: white;
+    margin-bottom: 5px;
+    padding-left: 1.5%;
+}
+
+.message-timestamp {
+    font-size: 0.85rem;
+    color: white;
+}
+
+.new-conversation-container {
+    padding: 20px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    font-family: Arial, sans-serif;
+    text-align: center;
+}
+
+.new-conversation-title {
+    font-size: 1.8rem;
+    color: #333;
+    margin-bottom: 20px;
+}
+
+.new-conversation-form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.form-fields {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.form-fields input,
+.form-fields textarea,
+.form-fields select {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 1rem;
+}
+
+.form-submit {
+    margin-top: 1%;
+    padding: 10px 20px;
+    background-color: #007BFF;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    font-size: 1.1rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.form-submit:hover {
+    background-color: #0056b3;
+}
