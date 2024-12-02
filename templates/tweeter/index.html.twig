@@ -17,7 +17,7 @@
     </div>
     
     {# Boucle sur les tweets récupérés de la base de données #}
-    {% for tweet in tweets %}
+    {% for tweet in tweets|reverse %}
         {% include 'menu/tweet.html.twig' %}
         {% else %}
             <p>Aucun tweet trouvé.</p>

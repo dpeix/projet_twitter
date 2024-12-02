@@ -16,6 +16,15 @@ class TweetRepository extends ServiceEntityRepository
         parent::__construct($registry, Tweet::class);
     }
 
+    public function findAllOrderedByDate(): array
+    {
+        return $this->createQueryBuilder('t')
+            ->orderBy('t.createdAt')
+            ->getQuery()
+            ->getResult();
+    }
+
+
     //    /**
     //     * @return Tweet[] Returns an array of Tweet objects
     //     */

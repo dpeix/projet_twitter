@@ -47,7 +47,7 @@ class TweeterController extends AbstractController
         }
 
         // Récupérer tous les tweets de la base
-        $tweets = $tweetRepository->findAll();
+        $tweets = $tweetRepository->findAllOrderedByDate();
 
         // Rendre la vue avec les tweets et le formulaire
         return $this->render('tweeter/index.html.twig', [
