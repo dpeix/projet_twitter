@@ -2,6 +2,7 @@
 
 namespace App\Entity;
 
+use App\Entity\Conv;
 use App\Repository\ConvUserRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
