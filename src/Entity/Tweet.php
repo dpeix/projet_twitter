@@ -34,7 +34,7 @@ class Tweet
     /**
      * @var Collection<int, comment>
      */
-    #[ORM\OneToMany(targetEntity: comment::class, mappedBy: 'tweet')]
+    #[ORM\OneToMany(targetEntity: Comment::class, mappedBy: 'tweet')]
     private Collection $comments;
 
     #[ORM\ManyToOne(inversedBy: 'tweets')]
