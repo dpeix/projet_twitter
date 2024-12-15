@@ -63,4 +63,8 @@ return [
     '@symfony/ux-vue' => [
         'path' => './vendor/symfony/ux-vue/assets/dist/loader.js',
     ],
+    'tom-select/dist/css/tom-select.default.css' => [
+        'version' => '2.4.1',
+        'type' => 'css',
+    ],
 ];
