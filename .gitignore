@@ -36,4 +36,4 @@ npm-debug.log
 yarn-error.log
 ###< symfony/webpack-encore-bundle ###
 
-/frankenphp/Caddyfile
+frankenphp/Caddyfile
