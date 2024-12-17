@@ -38,7 +38,7 @@ class Comment
     private ?Tweet $tweet = null;
 
     #[ORM\ManyToOne(inversedBy: 'comments')]
-    private ?user $user = null;
+    private ?User $user = null;
 
     public function getId(): ?int
     {
