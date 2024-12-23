@@ -1,94 +1,105 @@
-Projet Twitter Clone avec Symfony
-Ce projet est un clone simplifié de Twitter, développé avec Symfony, Twig et MySQL. L'objectif est de recréer une plateforme de microblogging similaire à Twitter, permettant aux utilisateurs de publier des tweets, de suivre d'autres utilisateurs et d'interagir avec des posts.
+# Projet BTS SIO SLAM : Clone de Twitter
 
-Table des matières
-Description
-Technologies utilisées
-Installation
-Configuration de la base de données
-Utilisation
-Contribuer
-Licence
-Description
-Ce projet vise à recréer une version basique de Twitter, en incluant les fonctionnalités suivantes :
+## Description du projet
+Ce projet consiste à développer un clone de Twitter en utilisant les technologies suivantes :
+- **Symfony** : framework PHP pour le développement back-end.
+- **Twig** : moteur de templating pour le rendu des pages HTML.
+- **MySQL** : système de gestion de base de données relationnelles.
 
-Inscription et authentification des utilisateurs.
-Publication de tweets.
-Possibilité de suivre d'autres utilisateurs.
-Affichage de tweets sur le fil d'actualités.
-Interface simple et intuitive avec Twig.
-Ce projet est développé avec le framework Symfony et utilise MySQL comme système de gestion de base de données.
+L'objectif est de créer une application web permettant aux utilisateurs de publier des tweets, d'interagir avec les publications d'autres utilisateurs (likes, retweets) et de gérer leur profil.
 
-Technologies utilisées
-Symfony : Framework PHP pour le développement web.
-Twig : Moteur de templates pour générer des vues dynamiques.
-MySQL : Système de gestion de base de données relationnelle.
-Bootstrap : Framework CSS pour le design responsive.
-Composer : Gestionnaire de dépendances pour PHP.
-Installation
-Prérequis
-PHP 8.1 ou supérieur
-Composer
-MySQL ou MariaDB
-Étapes d'installation
-Clonez le dépôt :
+## Fonctionnalités principales
+1. **Gestion des utilisateurs**
+   - Inscription et connexion.
+   - Gestion de profil (modification des informations, mot de passe).
 
-Ouvrez un terminal et clonez le projet sur votre machine locale :
+2. **Publication de tweets**
+   - Création, modification et suppression de tweets.
+   - Affichage des tweets avec les informations suivantes :
+     - Identifiant du tweet (`id`)
+     - Identifiant de l'utilisateur (`user_id`)
+     - Date de création (`created_at`)
+     - Contenu (`content`)
+     - Nombre de likes (`likes`)
+     - Nombre de retweets (`retweets`)
+     - État du tweet (`state` : actif/inactif).
 
-git clone https://github.com/ton-utilisateur/ton-repository.git
-Accédez au répertoire du projet :
+3. **Interactions utilisateur**
+   - Aimer et retweeter des publications.
 
-cd ton-repository
-Installez les dépendances :
+4. **Affichage dynamique**
+   - Liste des tweets affichée par ordre chronologique.
+   - Interface utilisateur responsive.
 
-Utilisez Composer pour installer les dépendances PHP nécessaires :
+## Structure du projet
+- **Backend** :
+  - Framework : Symfony.
+  - Gestion des routes et des contrôleurs pour le traitement des requêtes HTTP.
+  - Validation des formulaires et sécurité.
 
-composer install
-Configurez la base de données :
+- **Frontend** :
+  - Moteur de templating Twig pour la génération des pages.
+  - Utilisation de Bootstrap pour le style et la responsivité.
 
-Créez une base de données MySQL pour le projet. Puis, modifiez le fichier .env à la racine du projet pour configurer les paramètres de connexion à la base de données :
+- **Base de données** :
+  - MySQL pour la gestion des entités (utilisateurs, tweets, likes, retweets).
 
-DATABASE_URL="mysql://root:password@127.0.0.1:3306/twitter_clone?serverVersion=5.7"
-Créez les tables de la base de données :
+## Prérequis
+- PHP >= 8.1
+- Composer
+- Symfony CLI
+- Serveur web (Apache ou Nginx)
+- MySQL
 
-Après avoir configuré votre base de données, vous devez créer les tables en exécutant la commande suivante :
+## Installation
+1. **Cloner le dépôt** :
+   ```bash
+   git clone https://github.com/votre-repo/clone-twitter-symfony.git
+   cd clone-twitter-symfony
+   ```
 
-php bin/console doctrine:migrations:migrate
-Démarrez le serveur de développement Symfony :
+2. **Installer les dépendances** :
+   ```bash
+   composer install
+   ```
 
-Vous pouvez maintenant démarrer le serveur de développement Symfony pour tester votre projet localement :
+3. **Configurer l'application** :
+   - Copier le fichier `.env` :
+     ```bash
+     cp .env .env.local
+     ```
+   - Modifier les variables de connexion à la base de données dans `.env.local` :
+     ```env
+     DATABASE_URL="mysql://user:password@127.0.0.1:3306/clone_twitter"
+     ```
 
-symfony serve
-Accédez à l'application :
+4. **Initialiser la base de données** :
+   ```bash
+   php bin/console doctrine:database:create
+   php bin/console doctrine:migrations:migrate
+   ```
 
-Ouvrez votre navigateur et allez à http://localhost:8000 pour voir l'application en action.
+5. **Lancer le serveur** :
+   ```bash
+   symfony server:start
+   ```
 
-Configuration de la base de données
-Le projet utilise MySQL pour la gestion des données. Assurez-vous que la base de données est correctement configurée dans le fichier .env.
+6. **Accéder à l'application** :
+   Ouvrez un navigateur et accédez à [http://localhost:8000](http://localhost:8000).
 
-Voici un exemple de configuration pour une base de données locale :
+## Utilisation
+- Créez un compte utilisateur.
+- Publiez vos tweets.
+- Explorez les publications et interagissez avec elles.
 
-DATABASE_URL="mysql://root:password@127.0.0.1:3306/twitter_clone?serverVersion=5.7"
-Une fois que vous avez configuré la base de données, vous pouvez exécuter les migrations pour créer les tables :
+## Auteur
+**[Votre Prénom et Nom]**
+- Étudiant en BTS SIO SLAM.
+- Passionné par le développement web et mobile.
 
-php bin/console doctrine:migrations:migrate
-Utilisation
-Fonctionnalités principales
-Inscription et authentification des utilisateurs : Les utilisateurs peuvent s'inscrire avec une adresse e-mail et un mot de passe. L'authentification est gérée via Symfony Security.
-Publication de tweets : Une fois connecté, les utilisateurs peuvent publier des tweets (messages de 280 caractères maximum).
-Suivre des utilisateurs : Les utilisateurs peuvent suivre d'autres utilisateurs pour voir leurs tweets dans leur fil d'actualités.
-Fil d'actualités : Les utilisateurs peuvent voir les tweets des personnes qu'ils suivent.
-Routes disponibles
-/ : Accueil, affiche les tweets des utilisateurs suivis.
-/login : Formulaire de connexion.
-/register : Formulaire d'inscription.
-/profile : Profil de l'utilisateur, avec la possibilité de publier des tweets.
-Contribuer
-Forkez le projet.
-Créez une branche pour votre fonctionnalité (git checkout -b feature/ma-nouvelle-fonctionnalité).
-Committez vos changements (git commit -am 'Ajout d\'une nouvelle fonctionnalité').
-Pushez la branche (git push origin feature/ma-nouvelle-fonctionnalité).
-Ouvrez une Pull Request.
-Licence
-Ce projet est sous la licence MIT.
+## Licence
+Ce projet est réalisé dans le cadre d'un cursus scolaire et n'est pas destiné à une utilisation commerciale.
+
+---
+*Ce document peut être modifié et adapté selon vos besoins.*
 
