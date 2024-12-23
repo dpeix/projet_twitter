@@ -8,29 +8,6 @@ Ce projet consiste à développer un clone de Twitter en utilisant les technolog
 
 L'objectif est de créer une application web permettant aux utilisateurs de publier des tweets, d'interagir avec les publications d'autres utilisateurs (likes, retweets) et de gérer leur profil.
 
-## Fonctionnalités principales
-1. **Gestion des utilisateurs**
-   - Inscription et connexion.
-   - Gestion de profil (modification des informations, mot de passe).
-
-2. **Publication de tweets**
-   - Création, modification et suppression de tweets.
-   - Affichage des tweets avec les informations suivantes :
-     - Identifiant du tweet (`id`)
-     - Identifiant de l'utilisateur (`user_id`)
-     - Date de création (`created_at`)
-     - Contenu (`content`)
-     - Nombre de likes (`likes`)
-     - Nombre de retweets (`retweets`)
-     - État du tweet (`state` : actif/inactif).
-
-3. **Interactions utilisateur**
-   - Aimer et retweeter des publications.
-
-4. **Affichage dynamique**
-   - Liste des tweets affichée par ordre chronologique.
-   - Interface utilisateur responsive.
-
 ## Structure du projet
 - **Backend** :
   - Framework : Symfony.
@@ -39,7 +16,7 @@ L'objectif est de créer une application web permettant aux utilisateurs de publ
 
 - **Frontend** :
   - Moteur de templating Twig pour la génération des pages.
-  - Utilisation de Bootstrap pour le style et la responsivité.
+  - Utilisation de CSS pour le style et la responsivité.
 
 - **Base de données** :
   - MySQL pour la gestion des entités (utilisateurs, tweets, likes, retweets).
@@ -93,13 +70,10 @@ L'objectif est de créer une application web permettant aux utilisateurs de publ
 - Explorez les publications et interagissez avec elles.
 
 ## Auteur
-**[Votre Prénom et Nom]**
+**Dylan PEIX**
 - Étudiant en BTS SIO SLAM.
 - Passionné par le développement web et mobile.
 
 ## Licence
 Ce projet est réalisé dans le cadre d'un cursus scolaire et n'est pas destiné à une utilisation commerciale.
-
----
-*Ce document peut être modifié et adapté selon vos besoins.*
 
