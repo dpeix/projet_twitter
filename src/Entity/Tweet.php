@@ -42,8 +42,7 @@ class Tweet
     private Collection $comments;
 
     #[ORM\ManyToOne(inversedBy: 'tweets')]
-    #[Groups(['tweet:read'])]
-    private ?user $user = null;
+    private ?User $user = null;
 
     public function __construct()
     {

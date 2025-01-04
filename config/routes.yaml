@@ -10,5 +10,5 @@ auth:
 
 tweets:
     path: /api/tweets
-    controller: App\Controller\TweetController::getTweets
+    controller: App\Controller\TweeterController::getTweets
     methods: GET
