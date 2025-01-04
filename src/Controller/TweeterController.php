@@ -55,4 +55,17 @@ class TweeterController extends AbstractController
             'form' => $form->createView(),
         ]);
     }
+
+    public function getTweets(EntityManagerInterface $entityManager): JsonResponse
+    {
+        $query = $entityManager->createQuery(
+            'SELECT t.id, t.user_id, t.created_at, t.content, t.likes, t.retweets, t.state, u.username 
+            FROM App\Entity\Tweet t 
+            JOIN t.user u'
+        );
+
+        $tweets = $query->getResult();
+
+        return $this->json($tweets);
+    }
 }
