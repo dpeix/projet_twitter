@@ -56,15 +56,14 @@ class TweeterController extends AbstractController
         ]);
     }
 
-    public function getTweets(EntityManagerInterface $entityManager): JsonResponse
+    #[Route('/api/tweets', name: 'api_tweets', methods: ['GET'])]
+    public function getTweets(TweetRepository $tweetRepository): JsonResponse
     {
-        $query = $entityManager->createQuery(
-            'SELECT t.id, t.createdAt, t.content, t.likes, t.retweets, t.state, u.username 
-            FROM App\Entity\Tweet t 
-            JOIN t.user u'
-        );
-
-        $tweets = $query->getResult();
+        $tweets = $tweetRepository->createQueryBuilder('t')
+            ->select('t.id', 't.createdAt', 't.content', 't.likes', 't.retweets', 't.state', 'u.username')
+            ->join('t.user', 'u')
+            ->getQuery()
+            ->getResult();
 
         return $this->json($tweets);
     }
