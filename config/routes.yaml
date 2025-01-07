@@ -7,8 +7,3 @@ controllers:
 auth:
     path: /auth
     methods: ['POST']
-
-tweets:
-    path: /api/tweets
-    controller: App\Controller\TweeterController::getTweets
-    methods: GET

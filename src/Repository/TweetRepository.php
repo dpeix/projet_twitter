@@ -24,7 +24,6 @@ class TweetRepository extends ServiceEntityRepository
             ->getResult();
     }
 
-
     //    /**
     //     * @return Tweet[] Returns an array of Tweet objects
     //     */

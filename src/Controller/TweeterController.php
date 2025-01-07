@@ -55,16 +55,4 @@ class TweeterController extends AbstractController
             'form' => $form->createView(),
         ]);
     }
-
-    #[Route('/api/tweets', name: 'api_tweets', methods: ['GET'])]
-    public function getTweets(TweetRepository $tweetRepository): JsonResponse
-    {
-        $tweets = $tweetRepository->createQueryBuilder('t')
-            ->select('t.id', 't.createdAt', 't.content', 't.likes', 't.retweets', 't.state', 'u.username')
-            ->join('t.user', 'u')
-            ->getQuery()
-            ->getResult();
-
-        return $this->json($tweets);
-    }
 }

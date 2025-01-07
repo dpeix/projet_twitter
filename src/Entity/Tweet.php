@@ -10,7 +10,7 @@ use Doctrine\ORM\Mapping as ORM;
 use ApiPlatform\Metadata\ApiResource;
 
 #[ORM\Entity(repositoryClass: TweetRepository::class)]
-#[ApiResource(normalizationContext: ['groups' => ['tweet:read']])]
+#[ApiResource]
 class Tweet
 {
     #[ORM\Id]
@@ -19,11 +19,9 @@ class Tweet
     private ?int $id = null;
 
     #[ORM\Column]
-    #[Groups(['tweet:read'])]
     private ?\DateTimeImmutable $createdAt = null;
 
     #[ORM\Column(length: 255)]
-    #[Groups(['tweet:read'])]
     private ?string $content = null;
 
     #[ORM\Column(type: Types::BIGINT, nullable: true)]
@@ -154,5 +152,10 @@ class Tweet
         $this->user = $user;
 
         return $this;
+    }
+
+    public function getUsername(): ?string
+    {
+        return $this->user ? $this->user->getUsername() : null;
     }
 }
