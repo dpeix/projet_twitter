@@ -19,38 +19,31 @@ class RegistrationController extends AbstractController
         UserPasswordHasherInterface $passwordHasher,
         EntityManagerInterface $entityManager
     ): Response {
-        // Création d'un nouvel utilisateur
         $user = new User();
-
-        // Création du formulaire d'inscription
         $form = $this->createForm(RegistrationFormType::class, $user);
         $form->handleRequest($request);
 
-        // Validation et traitement du formulaire
         if ($form->isSubmitted() && $form->isValid()) {
-            // Hashage du mot de passe
             $hashedPassword = $passwordHasher->hashPassword(
                 $user,
                 $form->get('plainPassword')->getData()
             );
             $user->setPassword($hashedPassword);
 
-            dump($form->get('birthday')->getData());
-            dump($user->getBirthday());
-            exit();
+            // Vérification et assignation de la date de naissance si elle est renseignée
+            $birthday = $form->get('birthday')->getData();
+            if ($birthday) {
+                $user->setBirthday($birthday);
+            }
 
-            // Ajouter le rôle par défaut
             $user->setRoles(['ROLE_USER']);
 
-            // Sauvegarde de l'utilisateur en base de données
             $entityManager->persist($user);
             $entityManager->flush();
 
-            // Redirection après inscription
             return $this->redirectToRoute('app_home');
         }
 
-        // Rendu de la page d'inscription
         return $this->render('registration/register.html.twig', [
             'registrationForm' => $form->createView(),
         ]);

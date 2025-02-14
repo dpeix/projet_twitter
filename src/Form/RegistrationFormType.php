@@ -4,7 +4,6 @@ namespace App\Form;
 
 use App\Entity\User;
 use Symfony\Component\Form\AbstractType;
-use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
 use Symfony\Component\Form\Extension\Core\Type\PasswordType;
 use Symfony\Component\Form\Extension\Core\Type\RepeatedType;
@@ -39,27 +38,19 @@ class RegistrationFormType extends AbstractType
                     new Assert\Email(['message' => 'L’adresse e-mail n’est pas valide.']),
                 ],
             ])
-            ->add('birthday', DateType::class, [
-                'widget' => 'single_text', // Permet d'utiliser un champ input type="date"
-                'input' => 'datetime', // Stocke sous forme d'objet DateTime
-                'format' => 'yyyy-MM-dd',
-                'html5' => true,
+            ->add('birthday', BirthdayType::class, [
+                'widget' => 'single_text',
                 'required' => false,
                 'constraints' => [
-                    new Assert\NotBlank(['message' => 'Veuillez entrer votre date de naissance.']),
                     new Assert\Date(['message' => 'Veuillez entrer une date valide.']),
                 ],
             ])
             ->add('plainPassword', RepeatedType::class, [
                 'type' => PasswordType::class,
-                'first_options' => [
-                    'label' => 'Mot de passe',
-                ],
-                'second_options' => [
-                    'label' => 'Confirmer le mot de passe',
-                ],
+                'first_options' => ['label' => 'Mot de passe'],
+                'second_options' => ['label' => 'Confirmer le mot de passe'],
                 'invalid_message' => 'Les mots de passe doivent correspondre.',
-                'mapped' => false, // Ce champ n’est pas directement lié à l’entité User
+                'mapped' => false,
                 'required' => true,
                 'constraints' => [
                     new Assert\NotBlank(['message' => 'Veuillez entrer un mot de passe.']),
@@ -75,7 +66,7 @@ class RegistrationFormType extends AbstractType
     public function configureOptions(OptionsResolver $resolver): void
     {
         $resolver->setDefaults([
-            'data_class' => User::class, // L'entité associée à ce formulaire
+            'data_class' => User::class,
         ]);
     }
 }
